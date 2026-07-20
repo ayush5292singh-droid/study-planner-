@@ -347,3 +347,8 @@ document.getElementById("advice").innerHTML =
 tips[random];
 
 }
+function darkMode(){
+
+document.body.classList.toggle("dark");
+
+}
