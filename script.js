@@ -166,3 +166,157 @@ function deleteNote(index){
 
 
 showNotes();
+let exams = JSON.parse(localStorage.getItem("exams")) || [];
+
+let goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+
+// EXAMS
+
+function showExams(){
+
+let list = document.getElementById("examList");
+
+list.innerHTML="";
+
+
+exams.forEach((exam,index)=>{
+
+let li=document.createElement("li");
+
+let today=new Date();
+
+let date=new Date(exam.date);
+
+let days=Math.ceil(
+(date-today)/(1000*60*60*24)
+);
+
+
+li.innerHTML =
+exam.name + " - " + days + " days left " +
+`<button onclick="deleteExam(${index})">❌</button>`;
+
+
+list.appendChild(li);
+
+});
+
+}
+
+
+
+function addExam(){
+
+let name=document.getElementById("examName").value;
+
+let date=document.getElementById("examDate").value;
+
+
+if(name && date){
+
+exams.push({
+name:name,
+date:date
+});
+
+
+localStorage.setItem(
+"exams",
+JSON.stringify(exams)
+);
+
+
+showExams();
+
+}
+
+}
+
+
+
+function deleteExam(index){
+
+exams.splice(index,1);
+
+localStorage.setItem(
+"exams",
+JSON.stringify(exams)
+);
+
+showExams();
+
+}
+
+
+
+// GOALS
+
+function showGoals(){
+
+let list=document.getElementById("goalList");
+
+list.innerHTML="";
+
+
+goals.forEach((goal,index)=>{
+
+let li=document.createElement("li");
+
+li.innerHTML=
+goal+
+` <button onclick="deleteGoal(${index})">❌</button>`;
+
+list.appendChild(li);
+
+});
+
+}
+
+
+
+function addGoal(){
+
+let input=document.getElementById("goalInput");
+
+
+if(input.value){
+
+goals.push(input.value);
+
+
+localStorage.setItem(
+"goals",
+JSON.stringify(goals)
+);
+
+
+input.value="";
+
+showGoals();
+
+}
+
+}
+
+
+
+function deleteGoal(index){
+
+goals.splice(index,1);
+
+
+localStorage.setItem(
+"goals",
+JSON.stringify(goals)
+);
+
+
+showGoals();
+
+}
+
+
+showExams();
+
+showGoals();
