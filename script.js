@@ -320,3 +320,30 @@ showGoals();
 showExams();
 
 showGoals();
+let tips = [
+
+"📚 Revise your notes every day for better memory.",
+
+"⏱️ Use short study sessions with small breaks.",
+
+"📝 Practice questions after learning a topic.",
+
+"🎯 Set a clear goal before starting study.",
+
+"💡 Teach someone else to understand concepts better.",
+
+"🌙 Sleep properly because rest improves learning."
+
+];
+
+
+function getAdvice(){
+
+let random =
+Math.floor(Math.random()*tips.length);
+
+
+document.getElementById("advice").innerHTML =
+tips[random];
+
+}
