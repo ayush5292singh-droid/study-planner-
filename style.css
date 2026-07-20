@@ -86,3 +86,40 @@ button {
 button:hover {
     transform: scale(1.05);
 }
+.dark {
+
+background: #121212;
+
+color: white;
+
+}
+
+
+.dark .card {
+
+background:#222;
+
+color:white;
+
+}
+
+
+.dark .box {
+
+background:rgba(255,255,255,0.08);
+
+}
+
+
+.box, .card {
+
+transition:0.3s;
+
+}
+
+
+.box:hover, .card:hover {
+
+transform:translateY(-5px);
+
+}
