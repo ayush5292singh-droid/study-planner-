@@ -97,3 +97,72 @@ function resetTimer(){
     document.getElementById("timer").innerHTML = "25:00";
 
 }
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+
+function showNotes(){
+
+    let list = document.getElementById("noteList");
+
+    list.innerHTML = "";
+
+
+    notes.forEach((note,index)=>{
+
+        let li = document.createElement("li");
+
+        li.innerHTML =
+        note + 
+        ` <button onclick="deleteNote(${index})">❌</button>`;
+
+        list.appendChild(li);
+
+    });
+
+}
+
+
+
+function addNote(){
+
+    let input = document.getElementById("noteInput");
+
+
+    if(input.value.trim() !== ""){
+
+        notes.push(input.value);
+
+
+        localStorage.setItem(
+            "notes",
+            JSON.stringify(notes)
+        );
+
+
+        input.value="";
+
+        showNotes();
+
+    }
+
+}
+
+
+
+function deleteNote(index){
+
+    notes.splice(index,1);
+
+
+    localStorage.setItem(
+        "notes",
+        JSON.stringify(notes)
+    );
+
+
+    showNotes();
+
+}
+
+
+showNotes();
